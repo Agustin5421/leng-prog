@@ -10,24 +10,24 @@ classicEncode :: String -> [(Int, Char)]
 classicEncode (x: xs) = encodeHelper 1 x xs
 
 encodeHelper :: Int -> Char -> String -> [(Int, Char)]
-encodeHelper n x [] = [(n, x)] 
-encodeHelper n x (y:ys) 
+encodeHelper n x [] = [(n, x)]
+encodeHelper n x (y:ys)
               | y == x  = encodeHelper (n + 1) y ys
               | otherwise = (n, x) : encodeHelper 1 y ys
-              
-              
-              
+
+
+
 --Ejercicio 2
 data Element = One Char
                 | Repeat Char Int deriving (Show)
-          
-          
+
+
 encodeAsElement :: String -> [Element]
 encodeAsElement s = encodeAsElemHelper (encode s)
 
 encodeAsElemHelper :: [(Int, Char)] -> [Element]
 encodeAsElemHelper [] = []
-encodeAsElemHelper ((n, c):xs) 
+encodeAsElemHelper ((n, c):xs)
                   | n <= 1 = One c : encodeAsElemHelper xs
                   | otherwise = Repeat c n : encodeAsElemHelper xs
 
